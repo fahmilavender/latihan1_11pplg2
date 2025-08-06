@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final bool isPassword;
   final bool readOnly;
+  final bool isNumber;
   final VoidCallback? onTap;
 
   const CustomTextField({
@@ -12,6 +14,7 @@ class CustomTextField extends StatelessWidget {
     required this.label,
     required this.controller,
     this.isPassword = false,
+    this.isNumber = false,
     this.readOnly = false,
     this.onTap,
   });
@@ -21,6 +24,9 @@ class CustomTextField extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 5, bottom: 10),
       child: TextField(
+        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+        inputFormatters: isNumber ? 
+        [FilteringTextInputFormatter.digitsOnly] : [],
         controller: controller,
         obscureText: isPassword,
         readOnly: readOnly,

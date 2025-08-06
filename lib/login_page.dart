@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:latihan1_11pplg2/widgets/custom_text_field.dart';
+import 'widgets/custom_button.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -44,13 +46,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(
               margin: const EdgeInsets.only(top: 10, bottom: 10),
-              child: TextField(
-                controller: txtUsername,
-                decoration: const InputDecoration(
-                  labelText: "Username",
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              child: CustomTextField(label: "Login", controller: txtUsername, isPassword: false)
             ),
             Container(
               margin: const EdgeInsets.only(top: 2, bottom: 2),
@@ -63,14 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 15),
             Container(
               width: double.infinity,
               alignment: Alignment.center,
-              child: ElevatedButton(
+              child: CustomButton(
+                text: "Login",
                 onPressed: () {
-                  if (txtUsername.text == "admin" &&
-                      txtPassword.text == "admin123") {
+                  if (txtPassword.text == "admin123") {
                     setState(() {
                       statusLogin = "Sukses Login";
                     });
@@ -79,13 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                       statusLogin = "Gagal";
                     });
                   }
-                  print("Status:" + statusLogin);
+                  print("Status:$statusLogin");
                 },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: const Text("Login"),
-              ),
+              )
             ),
             Container(
               margin: const EdgeInsets.only(top: 20, bottom: 32),
