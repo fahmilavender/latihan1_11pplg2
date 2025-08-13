@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihan1_11pplg2/controllers/calculator_controller.dart';
+import 'package:latihan1_11pplg2/routes/routes.dart';
 import 'package:latihan1_11pplg2/widgets/custom_button.dart';
 import 'package:latihan1_11pplg2/widgets/custom_text_field.dart';
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
 
-  final CalculatorController calculatorController = Get.put(CalculatorController());
+  final CalculatorController calculatorController =
+      Get.put(CalculatorController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Calculator")),
-      body: Padding(
+      appBar: AppBar(title: const Text("Calculator")),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,12 +26,14 @@ class CalculatorPage extends StatelessWidget {
               isPassword: false,
               isNumber: true,
             ),
+            const SizedBox(height: 10),
             CustomTextField(
               label: "Input Angka 2",
               controller: calculatorController.txtAngka2,
               isPassword: false,
               isNumber: true,
             ),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -42,7 +46,7 @@ class CalculatorPage extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 SizedBox(
                   width: 80,
                   child: CustomButton(
@@ -54,6 +58,7 @@ class CalculatorPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -66,7 +71,7 @@ class CalculatorPage extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 SizedBox(
                   width: 80,
                   child: CustomButton(
@@ -78,19 +83,14 @@ class CalculatorPage extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 20),
-
-            // Hasil
             Obx(() {
               return Text(
                 "Hasil: ${calculatorController.textHasil.value}",
                 style: const TextStyle(fontSize: 20),
               );
             }),
-
             const SizedBox(height: 20),
-            
             Center(
               child: SizedBox(
                 width: 100,
@@ -102,6 +102,15 @@ class CalculatorPage extends StatelessWidget {
                     calculatorController.textHasil.value = "";
                   },
                 ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.toNamed(AppRoutes.footballPage);
+                },
+                child: const Text("Go to Football Page"),
               ),
             ),
           ],
